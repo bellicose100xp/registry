@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="registry">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angularfire.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.0.0/firebase.js"></script>
+
+    <script src="app/js/app.js"></script>
+</head>
+
+<body ng-controller="mainController as mc">
+
+<form class="form-horizontal">
+    <fieldset>
+        <legend> Add Wedding Registry Info</legend>
+
+        <div class="form-group">
+            <label for="firstName" class="col-md-2 control-label">First Name:</label>
+
+            <div class="col-md-4">
+                <input id="firstName" class="form-control" type="text" ng-model="mc.firstName">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName" class="col-md-2 control-label">Last Name:</label>
+
+            <div class="col-md-4">
+                <input id="lastName" class="form-control" type="text" ng-model="mc.lastName">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="tel" class="col-md-2 control-label">Phone Number:</label>
+
+            <div class="col-md-4">
+                <input id="tel" class="form-control" type="text" ng-model="mc.tel">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="suitStyle" class="col-md-2 control-label">Suit Style:</label>
+
+            <div class="col-md-4">
+                <input id="firstName" class="form-control" type="text" ng-model="mc.suitStyle">
+            </div>
+        </div>
+
+    </fieldset>
+
+</form>
+
+</body>
+</html>
