@@ -1,7 +1,8 @@
 (function(){
+    'use strict';
 
     angular
-        .Module('registry',['firebase'])
+        .module('registry',['firebase'])
         .controller('mainController',mainController)
 
     function mainController($firebase){
@@ -13,7 +14,10 @@
 
         mc.data = sync.$asArray();
 
-
+        mc.addCustomer = function(firstName, lastName, tel, suitSyle) {
+            mc.data.$add({firstName: firstName, lastName: lastName, tel: tel, suitStyle: suitSyle});
+            mc.firstName = mc.lastName = mc.tel = mc.suitStyle = "";
+        }
 
     }
 
