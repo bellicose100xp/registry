@@ -20,11 +20,6 @@
             mc.firstName = mc.lastName = mc.tel = mc.suitStyle = mc.date = "";
         }
 
-        mc.toggleCompleted = function (customer) {
-            customer.isCompleted = !customer.isCompleted;
-            mc.data.$save(customer);
-        }
-
     }
 
 
