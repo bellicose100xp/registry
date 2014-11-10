@@ -12,80 +12,19 @@
     <script src="js/angular.js"></script>
     <script src="js/angularfire.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.0.0/firebase.js"></script>
+    <script src="js/ui-utils.js"></script>
+    <script src="js/angular-ui-router.js"></script>
 
     <script src="app/js/app.js"></script>
+    <script src="app/js/controllers/mainController.js"></script>
+    <script src="app/js/filters/tel.js"></script>
 </head>
 
-<body ng-controller="mainController as mc">
+<body>
 
-<form class="form-horizontal col-md-8 col-md-offset-2"
-      ng-submit="mc.addCustomer(mc.firstName,mc.lastName,mc.tel,mc.suitStyle)">
-    <fieldset>
-        <legend> Add Wedding Registry Info</legend>
-
-        <div class="form-group">
-            <label for="firstName" class="col-md-2 control-label">First Name:</label>
-
-            <div class="col-md-4">
-                <input id="firstName" class="form-control" type="text" ng-model="mc.firstName">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="lastName" class="col-md-2 control-label">Last Name:</label>
-
-            <div class="col-md-4">
-                <input id="lastName" class="form-control" type="text" ng-model="mc.lastName">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="tel" class="col-md-2 control-label">Phone Number:</label>
-
-            <div class="col-md-4">
-                <input id="tel" class="form-control" type="text" ng-model="mc.tel">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="suitStyle" class="col-md-2 control-label">Suit Style:</label>
-
-            <div class="col-md-4">
-                <input id="suitStyle" class="form-control" type="text" ng-model="mc.suitStyle">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <button type="submit">Add Customer</button>
-        </div>
-
-    </fieldset>
-
-</form>
-
-<table class="table col-md-9">
-    <thead>
-    <td>Completed</td>
-    <td>First Name</td>
-    <td>Last Name</td>
-    <td>Telephone</td>
-    <td>Suit for Wedding</td>
-    <td>Date Added</td>
-    </thead>
-    <tbody>
-    <tr ng-repeat="customer in mc.data | orderBy:-'dateAdded'" ng-class="{danger: customer.isCompleted}">
-        <td><input type="checkbox" ng-model="customer.isCompleted" ng-change="mc.data.$save(customer)"></td>
-        <td>{{customer.firstName}}</td>
-        <td>{{customer.lastName}}</td>
-        <td>{{customer.tel}}</td>
-        <td>{{customer.suitStyle}}</td>
-        <td>{{customer.dateAdded | date:'yyyy-MM-dd hh-mm-ss'}}</td>
-        <td>
-            <button ng-click="mc.data.$remove(customer)" class="btn btn-danger">Delete</button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="container">
+    <div ui-view></div>
+</div>
 
 </body>
 </html>
