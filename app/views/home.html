@@ -1,0 +1,113 @@
+<form class="form-horizontal col-md-8 col-md-offset-2"
+      name="registryForm"
+      ng-submit="mc.addCustomer(registryForm.$valid)" novalidate>
+
+    <fieldset>
+        <legend> Add Wedding Registry Info</legend>
+
+        <div class="form-group"
+             ng-class="{'has-error': registryForm.firstName.$invalid && registryForm.firstName.$touched}">
+            <label for="firstName" class="col-md-2 control-label">First Name:</label>
+
+            <div class="col-md-4">
+                <input id="firstName"
+                       name="firstName"
+                       class="form-control"
+                       type="text"
+                       ng-model="mc.firstName"
+                       required>
+            </div>
+
+            <div ng-messages="registryForm.firstName.$error" ng-show="registryForm.firstName.$touched">
+                <div class="text-danger" ng-message="required">First Name is required</div>
+            </div>
+
+        </div>
+
+        <div class="form-group"
+             ng-class="{'has-error': registryForm.lastName.$invalid && registryForm.lastName.$touched}">
+            <label for="lastName" class="col-md-2 control-label">Last Name:</label>
+
+            <div class="col-md-4">
+                <input id="lastName"
+                       name="lastName"
+                       class="form-control"
+                       type="text"
+                       ng-model="mc.lastName"
+                       required>
+            </div>
+
+        </div>
+
+        <div class="form-group"
+             ng-class="{'has-error': registryForm.tel.$invalid && registryForm.tel.$touched}">
+            <label for="tel" class="col-md-2 control-label">Phone Number:</label>
+
+            <div class="col-md-4">
+                <input id="tel"
+                       name="tel"
+                       class="form-control"
+                       type="text"
+                       ng-model="mc.tel"
+                       ui-mask="( 999 ) 999-9999"
+                       required>
+            </div>
+
+            <div ng-messages="registryForm.tel.$error" ng-show="registryForm.tel.$touched">
+                <div class="text-danger" ng-message="required">Phone number is required & must be valid number</div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group"
+             ng-class="{'has-error': registryForm.suitStyle.$invalid && registryForm.suitStyle.$touched}">
+            <label for="suitStyle" class="col-md-2 control-label">Suit Style:</label>
+
+            <div class="col-md-4">
+                <input id="suitStyle"
+                       name="suitStyle"
+                       class="form-control"
+                       type="text"
+                       ng-model="mc.suitStyle"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Add Customer</button>
+            <span>
+                <span style="color: #ffffff;background-color: darkgreen; padding: 5px"
+                      ng-hide="mc.saveButtonClicked">Product Saved</span>
+                <span style="color: #ffffff;background-color: red; padding: 5px;"
+                      ng-hide="mc.needsValidation">ERROR! Check all errors on the page</span>
+            </span>
+        </div>
+
+    </fieldset>
+
+</form>
+
+<table class="table col-md-9">
+    <thead>
+    <td>Completed</td>
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>Telephone</td>
+    <td>Suit for Wedding</td>
+    <td>Date Added</td>
+    </thead>
+    <tbody>
+    <tr ng-repeat="customer in mc.data | orderBy:-'dateAdded'" ng-class="{danger: customer.isCompleted}">
+        <td><input type="checkbox" ng-model="customer.isCompleted" ng-change="mc.data.$save(customer)"></td>
+        <td>{{customer.firstName}}</td>
+        <td>{{customer.lastName}}</td>
+        <td>{{customer.tel | tel}}</td>
+        <td>{{customer.suitStyle}}</td>
+        <td>{{customer.dateAdded | date:'yyyy-MM-dd hh-mm-ss a'}}</td>
+        <td>
+            <button ng-click="mc.data.$remove(customer)" class="btn btn-danger">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
