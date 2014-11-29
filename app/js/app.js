@@ -43,6 +43,26 @@
                         }
                     }
                 })
+                .state('details', {
+                    url: '/:uniqueId',
+                    templateUrl: 'app/views/details.html',
+                    controller: 'detailsController as dc',
+                    resolve: {
+                        'customerKey': function ($stateParams) {
+                            return $stateParams.uniqueId;
+                        },
+                        // controller will not be loaded until $requireAuth resolves
+                        // $requireAuth returns a promise so the resolve waits for it to complete
+                        // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.run
+                        'currentAuth': function ($firebaseAuth, FIREBASE_URL) {
+                            var ref = new Firebase(FIREBASE_URL);
+                            var authObj = $firebaseAuth(ref);
+                            console.log('Checking Authentication');
+                            return authObj.$requireAuth();
+
+                        }
+                    }
+                })
                 .state('logout', {
                     url: '/logout',
                     templateUrl: 'app/views/logout.html',

@@ -106,7 +106,7 @@
         <td>{{customer.suitStyle}}</td>
         <td>{{customer.dateAdded | date:'yyyy-MM-dd hh-mm-ss a'}}</td>
         <td>
-            <button ng-click="mc.data.$remove(customer)" class="btn btn-danger">Delete</button>
+            <a ui-sref="details({uniqueId: customer.$id})"> <button class="btn btn-info">Edit</button> </a>
         </td>
     </tr>
     </tbody>

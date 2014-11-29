@@ -1,0 +1,64 @@
+
+<div> <button ng-hide="dc.editing"
+              class="btn btn-info"
+              ng-click="dc.editItem()"> Edit Customer Information </button></div>
+
+<!-- Customer Edit Form -->
+<form name="detailsForm" ng-submit="dc.saveCustomer(detailsForm.$valid)" novalidate>
+    <div ng-class="{'alert alert-danger': detailsForm.firstName.$invalid && detailsForm.firstName.$touched}">
+        <label for="firstName">First Name: </label>
+
+        <span ng-hide="dc.editing">{{dc.customer.firstName}}</span>
+
+        <input ng-show="dc.editing"
+               name="firstName"
+               id="firstName"
+               ng-model="dc.customer.firstName"
+               required/>
+
+        <div ng-messages="detailsForm.firstName.$error" ng-show="detailsForm.firstName.$touched">
+            <div class="text-danger" ng-message="required">First Name is required, Please enter a valid name</div>
+        </div>
+
+    </div>
+
+    <div ng-class="{'alert alert-danger': detailsForm.lastName.$invalid && detailsForm.lastName.$touched}">
+        <label for="lastName">Last Name: </label>
+
+        <span ng-hide="dc.editing">{{dc.customer.lastName}}</span>
+
+        <input ng-show="dc.editing"
+               name="lastName"
+               id="lastName"
+               ng-model="dc.customer.lastName"
+               required/>
+
+        <div ng-messages="detailsForm.lastName.$error" ng-show="detailsForm.lastName.$touched">
+            <div class="text-danger" ng-message="required">Last Name is required, Please enter a valid name</div>
+        </div>
+
+    </div>
+
+    <div> <button type="submit" ng-show="dc.editing" class="btn btn-success"> Save Customer Information </button></div>
+
+</form>
+
+<!-- Customer Party Form -->
+
+<form name="partyForm" ng-submit="dc.addParty()" novalidate>
+    <label for="partyFirstName">Party First Name</label>
+
+    <input id="partyFirstName"
+           name="partyFirstName"
+           type="text"
+           ng-model="dc.customerParty.firstName"
+           required>
+    <button type="submit">Submit party Info</button>
+
+</form>
+
+<table>
+    <tr ng-repeat="member in dc.customerParty">
+        <td><span class="glyphicon glyphicon-asterisk"> {{member.partyFirstName}}</span></td>
+    </tr>
+</table>
