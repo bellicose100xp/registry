@@ -42,10 +42,12 @@
         var refParty = new Firebase(FIREBASE_URL + '/' + customerKey + '/party');
         dc.customerParty = $firebase(refParty).$asArray();
 
-        dc.addParty = function () {
-            dc.customerParty.$add({
-                partyFirstName: dc.customerParty.firstName
-            })
+        dc.addParty = function (isValid) {
+            if (isValid) {
+                dc.customerParty.$add({
+                    partyFirstName: dc.customerParty.firstName
+                })
+            }
 
         };
 
