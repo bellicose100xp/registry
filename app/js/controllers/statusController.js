@@ -8,9 +8,11 @@
         .module('registry')
         .controller('statusController', statusController);
 
-    function statusController($firebaseAuth, FIREBASE_URL) {
+    function statusController($firebaseAuth, FIREBASE_URL, $state, $scope) {
 
         var sc = this;
+        // exposing $state to scope so it can be used in expression
+        $scope.$state = $state;
 
         var ref = new Firebase(FIREBASE_URL);
         sc.authObj = $firebaseAuth(ref);
@@ -30,7 +32,7 @@
 
         sc.logout = function(){
             sc.authObj.$unauth();
-        }
+        };
 
     }
 }());

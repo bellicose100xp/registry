@@ -1,12 +1,15 @@
-
-<div> <button ng-hide="dc.editing"
-              class="btn btn-info"
-              ng-click="dc.editItem()"> Edit Customer Information </button></div>
+<!-- Edit button at the top -->
+<button class="btn btn-primary btn-xs"
+        ng-hide="dc.editing"
+        ng-click="dc.editItem()">Edit
+</button>
 
 <!-- Customer Edit Form -->
 <form name="detailsForm" ng-submit="dc.saveCustomer(detailsForm.$valid)" novalidate>
+    <legend> Customer Information</legend>
 
-        <span ng-hide="dc.editing">{{dc.customer.firstName}}</span>
+    <div class="h1">
+        <span class="h1" ng-hide="dc.editing">{{dc.customer.firstName}}</span>
 
         <input ng-show="dc.editing"
                name="firstName"
@@ -21,8 +24,7 @@
         </span>
 
 
-
-        <span ng-hide="dc.editing">{{dc.customer.lastName}}</span>
+        <span class="h1" ng-hide="dc.editing">{{dc.customer.lastName}}</span>
 
         <input ng-show="dc.editing"
                name="lastName"
@@ -39,14 +41,13 @@
 
     <span>
 
-        <span ng-hide="dc.editing">{{dc.customer.tel | tel}}</span>
+        <span class="text-danger" ng-hide="dc.editing">{{dc.customer.tel | tel}}</span>
 
         <input ng-show="dc.editing"
                name="tel"
                id="tel"
                ng-model="dc.customer.tel"
                ui-mask="( 999 ) 999-9999"
-               placeholder="Contact No"
                required/>
 
         <span ng-messages="detailsForm.tel.$error" ng-show="detailsForm.tel.$touched">
@@ -55,7 +56,9 @@
 
     </span>
 
-    <span>
+    </div>
+
+    <span class="h3">
 
         <span ng-hide="dc.editing">{{dc.customer.suitStyle}}</span>
 
@@ -73,33 +76,73 @@
     </span>
 
 
-    <div> <button type="submit" ng-show="dc.editing" class="btn btn-success"> Save Customer Information </button></div>
+    <div>
+        <button type="submit" ng-show="dc.editing" class="btn btn-success"> Save Customer Information</button>
+    </div>
 
 </form>
 
+<!-- Horizontal line separation -->
+<hr>
+
 <!-- Customer Party Form -->
-
 <form name="partyForm" ng-submit="dc.addParty(partyForm.$valid)" novalidate>
-    <span>
 
-    <input id="partyFirstName"
-           name="partyFirstName"
-           type="text"
-           ng-model="dc.customerParty.firstName"
-           placeholder="Party First Name"
-           required>
+    <legend> Customer Party Information</legend>
+
+    <span>
+        <input id="partyFirstName"
+               name="partyFirstName"
+               type="text"
+               ng-model="dc.customerParty.firstName"
+               placeholder="Party First Name"
+               required>
         <span ng-messages="partyForm.partyFirstName.$error" ng-show="partyForm.partyFirstName.$touched">
-            <span class="text-danger" ng-message="required">Name of your party </span>
+            <span class="text-danger" ng-message="required">First Name of your party is required </span>
         </span>
     </span>
 
+    <span>
+        <input id="partyLastName"
+               name="partyLastName"
+               type="text"
+               ng-model="dc.customerParty.lastName"
+               placeholder="Party Last Name"
+               required>
+        <span ng-messages="partyForm.partyLastName.$error" ng-show="partyForm.partyLastName.$touched">
+            <span class="text-danger" ng-message="required">Last Name of your party is required </span>
+        </span>
+    </span>
 
-    <button type="submit">Submit party Info</button>
+    <span>
+        <input id="partySuitStyle"
+               name="partySuitStyle"
+               type="text"
+               ng-model="dc.customerParty.suitStyle"
+               placeholder="Suit for Wedding"
+               required>
+        <span ng-messages="partyForm.partySuitStyle.$error" ng-show="partyForm.partySuitStyle.$touched">
+            <span class="text-danger" ng-message="required">Suit information is required</span>
+        </span>
+    </span>
+
+    <button type="submit">Add Party Member</button>
 
 </form>
 
-<table>
-    <tr ng-repeat="member in dc.customerParty">
-        <td><span class="glyphicon glyphicon-asterisk"> {{member.partyFirstName}}</span></td>
+<!-- Customer party display table -->
+<table class="table">
+    <thead>
+    <tr>
+        <td>Guest Name</td>
+        <td>Suit for Wedding</td>
     </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="member in dc.customerParty">
+        <td>{{member.partyFirstName}} {{member.partyLastName}}</span></td>
+        <td>{{member.partySuitStyle}}</td>
+        <td><button class="btn btn-danger btn-xs" ng-click="dc.customerParty.$remove(member)">Delete</button></td>
+    </tr>
+    </tbody>
 </table>
