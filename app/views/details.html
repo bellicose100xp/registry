@@ -134,12 +134,14 @@
 <table class="table">
     <thead>
     <tr>
+        <td>Completed</td>
         <td>Guest Name</td>
         <td>Suit for Wedding</td>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="member in dc.customerParty">
+    <tr ng-repeat="member in dc.customerParty"  ng-class="{completed: member.isCompleted}">
+        <td><input type="checkbox" ng-model="member.isCompleted" ng-change="dc.customerParty.$save(member)"></td>
         <td>{{member.partyFirstName}} {{member.partyLastName}}</span></td>
         <td>{{member.partySuitStyle}}</td>
         <td><button class="btn btn-danger btn-xs" ng-click="dc.customerParty.$remove(member)">Delete</button></td>

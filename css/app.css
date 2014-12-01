@@ -1,3 +1,21 @@
 table thead tr td {
     font-weight: bold;
 }
+
+.saved {
+    color: #ffffff;
+    background-color: darkgreen;
+    padding: 5px;
+}
+
+.saveError {
+    color: #ffffff;
+    background-color: red;
+    padding: 5px;
+}
+
+.completed {
+    background-color: lightgray;
+    text-decoration: line-through;
+    font-style: italic;
+}

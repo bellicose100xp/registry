@@ -8,7 +8,7 @@
         .module('registry')
         .controller('mainController', mainController);
 
-    function mainController($scope, $firebase, $timeout, FIREBASE_URL) {
+    function mainController($scope, $firebase, $timeout, FIREBASE_URL, $state) {
 
         var mc = this;
         mc.firstName = mc.lastName = mc.tel = mc.suitStyle = mc.date = null;
@@ -35,7 +35,7 @@
                         dateAdded: Firebase.ServerValue.TIMESTAMP,
                         isCompleted: mc.isCompleted
                     })
-                    .then(function () {
+                    .then(function (ref) {
 
                         // reset all ng-model bindings to empty string so it doesn't get submitted twice
                         mc.firstName = mc.lastName = mc.tel = mc.suitStyle = mc.date = "";
@@ -45,6 +45,9 @@
 
                         // show that the submit action is successful
                         mc.saveButtonClicked = false;
+
+                        // go to customer edit state directly
+                        $state.go('details', {uniqueId:ref.key()});
 
                         // remove the success display after 3 seconds
                         $timeout(function () {

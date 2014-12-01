@@ -23,10 +23,8 @@
 
             if (isValid) {
 
-                dc.customer.$save().then(function (data) {
+                dc.customer.$save().then(function () {
                     dc.editing = false;
-                    // below outputs too much console data
-                    //   console.log('update successful',data);
                 }, function (error) {
                     console.log('Error:', error);
                 });
@@ -45,7 +43,7 @@
         var refParty = new Firebase(FIREBASE_URL + '/' + customerKey + '/party');
         dc.customerParty = $firebase(refParty).$asArray();
 
-
+        dc.customerParty.isCompleted = false;
 
         dc.addParty = function (isValid) {
             if (isValid) {
@@ -53,7 +51,8 @@
                 dc.customerParty.$add({
                     partyFirstName: dc.customerParty.firstName,
                     partyLastName: dc.customerParty.lastName,
-                    partySuitStyle: dc.customerParty.suitStyle
+                    partySuitStyle: dc.customerParty.suitStyle,
+                    partyCompleted: dc.customerParty.isCompleted
                 }).then(function () {
 
                     //remote values after they have been added so they don't get added twice
