@@ -1,0 +1,17 @@
+<div class="h4 text-center"
+     ng-controller="statusController as sc"
+     ng-show="sc.userEmail">
+    <span class="glyphicon glyphicon-user"></span> {{ sc.userEmail }}
+        <span ng-hide="$state.is('home')">|
+            <a ui-sref="home">
+                <span class="glyphicon glyphicon-home"></span> Home
+            </a>
+        </span>
+        <span ng-hide="$state.is('search')">|
+            <a ui-sref="search">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </a>
+        </span>
+    | <a ui-sref="login"
+         ng-click="sc.logout()">Logout</a>
+</div>

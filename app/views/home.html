@@ -97,24 +97,3 @@
 
 </form>
 
-<table class="table col-md-9">
-    <thead>
-    <td>Completed</td>
-    <td>Name</td>
-    <td>Telephone</td>
-    <td>Suit for Wedding</td>
-    <td>Date Added</td>
-    </thead>
-    <tbody>
-    <tr ng-repeat="customer in mc.data | orderBy:-'dateAdded'" ng-class="{completed: customer.isCompleted}">
-        <td><input type="checkbox" ng-model="customer.isCompleted" ng-change="mc.data.$save(customer)"></td>
-        <td>{{customer.firstName}} {{customer.lastName}}</td>
-        <td>{{customer.tel | tel}}</td>
-        <td>{{customer.suitStyle}}</td>
-        <td>{{customer.dateAdded | date:'yyyy-MM-dd hh-mm-ss a'}}</td>
-        <td>
-            <a ui-sref="details({uniqueId: customer.$id})"> <button class="btn btn-info">Edit</button> </a>
-        </td>
-    </tr>
-    </tbody>
-</table>

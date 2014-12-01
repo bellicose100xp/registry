@@ -37,7 +37,6 @@
                         'currentAuth': function ($firebaseAuth, FIREBASE_URL) {
                             var ref = new Firebase(FIREBASE_URL);
                             var authObj = $firebaseAuth(ref);
-                            console.log('Checking Authentication');
                             return authObj.$requireAuth();
 
                         }
@@ -57,7 +56,22 @@
                         'currentAuth': function ($firebaseAuth, FIREBASE_URL) {
                             var ref = new Firebase(FIREBASE_URL);
                             var authObj = $firebaseAuth(ref);
-                            console.log('Checking Authentication');
+                            return authObj.$requireAuth();
+
+                        }
+                    }
+                })
+                .state('search', {
+                    url: '/home/search',
+                    templateUrl: 'app/views/search.html',
+                    controller: 'searchController as sc',
+                    resolve: {
+                        // controller will not be loaded until $requireAuth resolves
+                        // $requireAuth returns a promise so the resolve waits for it to complete
+                        // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.run
+                        'currentAuth': function ($firebaseAuth, FIREBASE_URL) {
+                            var ref = new Firebase(FIREBASE_URL);
+                            var authObj = $firebaseAuth(ref);
                             return authObj.$requireAuth();
 
                         }

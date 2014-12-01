@@ -25,27 +25,21 @@
     <script src="app/js/controllers/loginController.js"></script>
     <script src="app/js/controllers/statusController.js"></script>
     <script src="app/js/controllers/detailsController.js"></script>
+    <script src="app/js/controllers/searchController.js"></script>
 
     <!-- filters -->
     <script src="app/js/filters/tel.js"></script>
 </head>
 
 <body>
+
+<!-- Top navigation bar, for ng-include the address must be wrapped inside
+     double quotes and then single quotes -->
 <div class="row">
-    <div class="h4 text-center"
-         ng-controller="statusController as sc"
-         ng-show="sc.userEmail">
-        <span class="glyphicon glyphicon-user"></span> {{ sc.userEmail }}
-        <span ng-hide="$state.is('home')">|
-            <a ui-sref="home">
-                <span class="glyphicon glyphicon-home"></span> Home
-            </a>
-        </span>
-        | <a ui-sref="login"
-             ng-click="sc.logout()">Logout</a>
-    </div>
+    <div ng-include="'app/views/nav.html'"></div>
 </div>
 
+<!-- Content wrapped inside container -->
 <div class="container">
     <div ui-view></div>
 </div>
