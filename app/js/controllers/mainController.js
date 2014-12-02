@@ -13,11 +13,20 @@
         var mc = this;
         mc.firstName = mc.lastName = mc.tel = mc.suitStyle = mc.date = mc.notes = null;
         mc.isCompleted = false;
-        var ref = new Firebase(FIREBASE_URL);
-        var sync = $firebase(ref);
-
         mc.saveButtonClicked = true;
         mc.needsValidation = true;
+
+
+        // what is prevent default & stop propagation
+        mc.open = function ($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            mc.opened = true;
+        };
+
+        var ref = new Firebase(FIREBASE_URL);
+        var sync = $firebase(ref);
 
         mc.data = sync.$asArray();
 
@@ -35,7 +44,8 @@
                         dateAdded: Firebase.ServerValue.TIMESTAMP,
                         isCompleted: mc.isCompleted,
                         notes: mc.notes,
-                        createdBy: currentAuth.password.email
+                        createdBy: currentAuth.password.email,
+                        eventDate: mc.eventDate.toDateString()
                     })
                     .then(function (ref) {
 

@@ -13,11 +13,23 @@
         var dc = this;
         dc.editing = false;
 
+        dc.open = function ($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            dc.opened = true;
+        };
+
         var ref = new Firebase(FIREBASE_URL + '/' + customerKey);
         dc.customer = $firebase(ref).$asObject();
 
         // this is declared here because otherwise the tel filter tries to parse a null string and throws error
         dc.customer.tel = '';
+
+        // this is so datepicker date can be saved in database
+        dc.dateStringConversion = function(){
+            dc.customer.eventDate = dc.eventDate ? dc.eventDate.toDateString() : '';
+        };
 
         dc.saveCustomer = function (isValid) {
 
