@@ -8,14 +8,22 @@
         .module('registry')
         .controller('searchController',searchController);
 
-    function searchController($firebase, FIREBASE_URL){
+    function searchController($firebase, FIREBASE_URL, currentAuth){
 
         var sc = this;
+
+        //for header sorting
+        sc.orderByField = 'dateAdded';
+        sc.reverseSort = true;
 
         var ref = new Firebase(FIREBASE_URL);
         var sync = $firebase(ref);
 
         this.data = sync.$asArray();
+
+        sc.systemUser = function(){
+            return currentAuth.password.email === 'admin@4hso.com';
+        };
 
     }
 

@@ -1,3 +1,5 @@
+
+<!-- filters -->
 <div>
     <div>
         <h3> Enter Search Criteria</h3>
@@ -12,33 +14,73 @@
         <input type="text" ng-model="search.last" placeholder="Last Name Only">
     </span>
     <span>
-        <input type="checkbox" ng-model="search.isCompleted">
+        <input type="checkbox"
+               data-ng-model="search.isCompleted"
+               data-ng-true-value="'false'"
+               data-ng-false-value="''"> Hide Completed
     </span>
 </div>
 
+<!-- Horizonal Line -->
 <hr>
 
+<!-- Data Display -->
 <table class="table col-md-9">
+
     <thead>
+
     <td>Completed</td>
-    <td>Name</td>
+
+    <td>
+        <a style="cursor: pointer" ng-click="sc.orderByField='firstName';sc.reverseSort = !sc.reverseSort">
+            Name
+            <span ng-show="sc.orderByField == 'firstName' ">
+                <span ng-hide="sc.reverseSort" class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+                <span ng-show="sc.reverseSort" class="glyphicon glyphicon-sort-by-alphabet"></span>
+            </span>
+        </a>
+    </td>
+
     <td>Telephone</td>
-    <td>Suit for Wedding</td>
-    <td>Date Added</td>
+
+    <td>
+        <a style="cursor: pointer" ng-click="sc.orderByField='dateAdded';sc.reverseSort = !sc.reverseSort">
+        Date Added
+            <span ng-show="sc.orderByField == 'dateAdded' ">
+                <span ng-hide="sc.reverseSort" class="glyphicon glyphicon-sort-by-attributes"></span>
+                <span ng-show="sc.reverseSort" class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+            </span>
+        </a>
+    </td>
+
+    <td>Added By</td>
+
     </thead>
+
     <tbody>
-    <tr ng-repeat="customer in sc.data | filter:search | orderBy:-'dateAdded'"
+
+    <tr ng-repeat="customer in sc.data
+                    | filter:{  isCompleted: search.isCompleted,
+                                firstName: search.firstName,
+                                lastName: search.lastName,
+                                tel: search.tel}
+                    | orderBy:sc.orderByField:sc.reverseSort"
         ng-class="{completed: customer.isCompleted}">
         <td><input type="checkbox" ng-model="customer.isCompleted" ng-change="sc.data.$save(customer)"></td>
         <td>{{customer.firstName}} {{customer.lastName}}</td>
         <td>{{customer.tel | tel}}</td>
-        <td>{{customer.suitStyle}}</td>
         <td>{{customer.dateAdded | date:'yyyy-MM-dd hh-mm-ss a'}}</td>
+        <td>{{customer.createdBy}}</td>
         <td>
             <a ui-sref="details({uniqueId: customer.$id})">
                 <button class="btn btn-info">Edit</button>
             </a>
         </td>
+        <td>
+            <button ng-show="sc.systemUser()" class="btn btn-danger" ng-click="sc.data.$remove(customer)">Delete</button>
+        </td>
     </tr>
+
     </tbody>
+
 </table>

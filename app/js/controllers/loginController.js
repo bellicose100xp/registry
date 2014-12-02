@@ -36,7 +36,7 @@
                         lc.authData = authData;
                         console.log('logged in as:', authData.password.email);
                        // $location.path('/home')
-                        $state.go('home');
+                        $state.go('search');
                     })
                     .catch(function (error) {
                         lc.errorMessage = error.toString();

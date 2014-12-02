@@ -1,4 +1,4 @@
-<form class="form-horizontal col-md-8 col-md-offset-2"
+<form class="form col-md-6 col-md-offset-3"
       name="registryForm"
       ng-submit="mc.addCustomer(registryForm.$valid)" novalidate>
 
@@ -7,14 +7,15 @@
 
         <div class="form-group"
              ng-class="{'has-error': registryForm.firstName.$invalid && registryForm.firstName.$touched}">
-            <label for="firstName" class="col-md-2 control-label">First Name:</label>
+            <label for="firstName" class="control-label">First Name:</label>
 
-            <div class="col-md-4">
+            <div>
                 <input id="firstName"
                        name="firstName"
                        class="form-control"
                        type="text"
                        ng-model="mc.firstName"
+                       placeholder="First Name of Customer"
                        required>
             </div>
 
@@ -26,14 +27,15 @@
 
         <div class="form-group"
              ng-class="{'has-error': registryForm.lastName.$invalid && registryForm.lastName.$touched}">
-            <label for="lastName" class="col-md-2 control-label">Last Name:</label>
+            <label for="lastName" class="control-label">Last Name:</label>
 
-            <div class="col-md-4">
+            <div>
                 <input id="lastName"
                        name="lastName"
                        class="form-control"
                        type="text"
                        ng-model="mc.lastName"
+                       placeholder="Last Name of Customer"
                        required>
             </div>
 
@@ -45,9 +47,9 @@
 
         <div class="form-group"
              ng-class="{'has-error': registryForm.tel.$invalid && registryForm.tel.$touched}">
-            <label for="tel" class="col-md-2 control-label">Phone Number:</label>
+            <label for="tel" class="control-label">Phone Number:</label>
 
-            <div class="col-md-4">
+            <div>
                 <input id="tel"
                        name="tel"
                        class="form-control"
@@ -66,19 +68,38 @@
 
         <div class="form-group"
              ng-class="{'has-error': registryForm.suitStyle.$invalid && registryForm.suitStyle.$touched}">
-            <label for="suitStyle" class="col-md-2 control-label">Suit Style:</label>
+            <label for="suitStyle" class="control-label">Suit Style, Color, Size:</label>
 
-            <div class="col-md-4">
+            <div>
                 <input id="suitStyle"
                        name="suitStyle"
                        class="form-control"
                        type="text"
                        ng-model="mc.suitStyle"
+                       placeholder="320-0S2 Black 55 Long, SH200 Navy 14.5 36/37 etc"
                        required>
             </div>
 
             <div ng-messages="registryForm.suitStyle.$error" ng-show="registryForm.suitStyle.$touched">
                 <div class="text-danger" ng-message="required">Suit to purchase is required</div>
+            </div>
+
+        </div>
+
+        <div class="form-group"
+             ng-class="{'has-error': registryForm.notes.$invalid && registryForm.notes.$touched}">
+            <label for="notes" class="control-label">Notes:</label>
+
+            <div>
+                <textarea id="notes"
+                          name="notes"
+                          class="form-control"
+                          rows="3"
+                          ng-model="mc.notes"
+                          placeholder="Enter notes such as 'customer has paid for his party members too'"
+                        >
+
+                </textarea>
             </div>
 
         </div>
@@ -92,6 +113,7 @@
                       ng-hide="mc.needsValidation">ERROR! Check all errors on the page</span>
             </span>
         </div>
+
 
     </fieldset>
 

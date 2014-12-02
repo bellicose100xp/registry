@@ -1,17 +1,27 @@
 <div class="h4 text-center"
      ng-controller="statusController as sc"
      ng-show="sc.userEmail">
+
     <span class="glyphicon glyphicon-user"></span> {{ sc.userEmail }}
-        <span ng-hide="$state.is('home')">|
-            <a ui-sref="home">
-                <span class="glyphicon glyphicon-home"></span> Home
-            </a>
+
+        <span ng-hide="$state.is('home')">
+            |<a ui-sref="home">
+            <span class="glyphicon glyphicon-plus"></span> Add
+        </a>
         </span>
-        <span ng-hide="$state.is('search')">|
-            <a ui-sref="search">
-                <span class="glyphicon glyphicon-search"></span> Search
-            </a>
+
+        <span ng-hide="$state.is('search')">
+            |<a ui-sref="search">
+            <span class="glyphicon glyphicon-search"></span> Search
+        </a>
         </span>
+
+        <span ng-show="$state.is('details')">
+                |<a href="javascript:window.print()">
+            <span class="glyphicon glyphicon-print"></span> Print
+        </a>
+        </span>
+
     | <a ui-sref="login"
-         ng-click="sc.logout()">Logout</a>
+         ng-click="sc.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
 </div>

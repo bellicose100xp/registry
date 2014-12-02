@@ -1,5 +1,5 @@
 <!-- Edit button at the top -->
-<button class="btn btn-primary btn-xs"
+<button class="btn btn-primary btn-xs no-print"
         ng-hide="dc.editing"
         ng-click="dc.editItem()">Edit
 </button>
@@ -8,8 +8,8 @@
 <form name="detailsForm" ng-submit="dc.saveCustomer(detailsForm.$valid)" novalidate>
     <legend> Customer Information</legend>
 
-    <div class="h1">
-        <span class="h1" ng-hide="dc.editing">{{dc.customer.firstName}}</span>
+    <div class="h2">
+        <span ng-hide="dc.editing">{{dc.customer.firstName}}</span>
 
         <input ng-show="dc.editing"
                name="firstName"
@@ -24,7 +24,7 @@
         </span>
 
 
-        <span class="h1" ng-hide="dc.editing">{{dc.customer.lastName}}</span>
+        <span ng-hide="dc.editing">{{dc.customer.lastName}}</span>
 
         <input ng-show="dc.editing"
                name="lastName"
@@ -58,9 +58,9 @@
 
     </div>
 
-    <span class="h3">
+    <span class="h4">
 
-        <span ng-hide="dc.editing">{{dc.customer.suitStyle}}</span>
+        <span ng-hide="dc.editing"><b>Suit to Purchase:</b> {{dc.customer.suitStyle}}</span>
 
         <input ng-show="dc.editing"
                name="suitStyle"
@@ -75,6 +75,21 @@
 
     </span>
 
+    <div>
+
+        <span ng-hide="dc.editing"><b>Notes:</b> {{dc.customer.notes}}</span>
+
+        <textarea ng-show="dc.editing"
+               name="notes"
+               id="notes"
+               rows="4"
+               cols="50"
+               ng-model="dc.customer.notes"
+               placeholder="Notes">
+        </textarea>
+
+    </div>
+
 
     <div>
         <button type="submit" ng-show="dc.editing" class="btn btn-success"> Save Customer Information</button>
@@ -88,7 +103,8 @@
 <!-- Customer Party Form -->
 <form name="partyForm" ng-submit="dc.addParty(partyForm.$valid)" novalidate>
 
-    <legend> Customer Party Information</legend>
+    <legend> Customer Party Information ({{dc.memberCount}} Guests)</legend>
+<span class="no-print">
 
     <span>
         <input id="partyFirstName"
@@ -120,6 +136,7 @@
                type="text"
                ng-model="dc.customerParty.suitStyle"
                placeholder="Suit for Wedding"
+               ng-keyup="dc.blurOnEnter($event)"
                required>
         <span ng-messages="partyForm.partySuitStyle.$error" ng-show="partyForm.partySuitStyle.$touched">
             <span class="text-danger" ng-message="required">Suit information is required</span>
@@ -127,7 +144,7 @@
     </span>
 
     <button type="submit">Add Party Member</button>
-
+</span>
 </form>
 
 <!-- Customer party display table -->
@@ -140,11 +157,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="member in dc.customerParty"  ng-class="{completed: member.isCompleted}">
+    <tr ng-repeat="member in dc.customerParty" ng-class="{completed: member.isCompleted}">
         <td><input type="checkbox" ng-model="member.isCompleted" ng-change="dc.customerParty.$save(member)"></td>
         <td>{{member.partyFirstName}} {{member.partyLastName}}</span></td>
         <td>{{member.partySuitStyle}}</td>
-        <td><button class="btn btn-danger btn-xs" ng-click="dc.customerParty.$remove(member)">Delete</button></td>
+        <td>
+            <button class="btn btn-danger btn-xs no-print" ng-click="dc.customerParty.$remove(member)">Delete</button>
+        </td>
     </tr>
     </tbody>
 </table>

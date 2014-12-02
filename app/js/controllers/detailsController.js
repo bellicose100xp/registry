@@ -17,7 +17,7 @@
         dc.customer = $firebase(ref).$asObject();
 
         // this is declared here because otherwise the tel filter tries to parse a null string and throws error
-        dc.customer.tel='';
+        dc.customer.tel = '';
 
         dc.saveCustomer = function (isValid) {
 
@@ -38,10 +38,31 @@
             dc.editing = true;
         };
 
+        // blur the suit style element for the party form so it doesn't give validation error
+        dc.blurOnEnter = function(e){
+            if (e.keyCode === 13){
+                return e.target.blur();
+            }
+        };
+
         // customer party array
 
         var refParty = new Firebase(FIREBASE_URL + '/' + customerKey + '/party');
         dc.customerParty = $firebase(refParty).$asArray();
+
+        // get a count of all members in party once the array is loaded
+        dc.customerParty.$loaded()
+            .then(function (list) {
+                dc.memberCount = list.length;
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+
+        // recount members every time party list is changed.
+        dc.customerParty.$watch(function () {
+           dc.memberCount = dc.customerParty.length;
+        });
 
         dc.customerParty.isCompleted = false;
 
