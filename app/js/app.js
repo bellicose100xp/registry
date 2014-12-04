@@ -34,11 +34,8 @@
                         // controller will not be loaded until $requireAuth resolves
                         // $requireAuth returns a promise so the resolve waits for it to complete
                         // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.run
-                        'currentAuth': function ($firebaseAuth, FIREBASE_URL) {
-                            var ref = new Firebase(FIREBASE_URL);
-                            var authObj = $firebaseAuth(ref);
-                            return authObj.$requireAuth();
-
+                        'currentAuth': function (myAuthService) {
+                            return myAuthService.requireAuthentication();
                         }
                     }
                 })
@@ -53,11 +50,8 @@
                         // controller will not be loaded until $requireAuth resolves
                         // $requireAuth returns a promise so the resolve waits for it to complete
                         // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.run
-                        'currentAuth': function ($firebaseAuth, FIREBASE_URL) {
-                            var ref = new Firebase(FIREBASE_URL);
-                            var authObj = $firebaseAuth(ref);
-                            return authObj.$requireAuth();
-
+                        'currentAuth': function (myAuthService) {
+                            return myAuthService.requireAuthentication();
                         }
                     }
                 })
@@ -69,11 +63,8 @@
                         // controller will not be loaded until $requireAuth resolves
                         // $requireAuth returns a promise so the resolve waits for it to complete
                         // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.run
-                        'currentAuth': function ($firebaseAuth, FIREBASE_URL) {
-                            var ref = new Firebase(FIREBASE_URL);
-                            var authObj = $firebaseAuth(ref);
-                            return authObj.$requireAuth();
-
+                        'currentAuth': function (myAuthService) {
+                            return myAuthService.requireAuthentication();
                         }
                     }
                 })
