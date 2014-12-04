@@ -8,7 +8,7 @@
         .module('registry')
         .controller('statusController', statusController);
 
-    function statusController($firebaseAuth, FIREBASE_URL, $state, $scope) {
+    function statusController($firebaseAuth, FIREBASE_URL, $state, $scope, myAuthService) {
 
         var sc = this;
         // exposing $state to scope so it can be used in expression
@@ -30,8 +30,12 @@
 
         });
 
-        sc.logout = function(){
-            sc.authObj.$unauth();
+        //sc.logout = function(){
+        //    sc.authObj.$unauth();
+        //};
+
+        sc.logout = function () {
+            myAuthService.logout();
         };
 
     }

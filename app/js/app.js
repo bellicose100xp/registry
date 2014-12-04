@@ -31,9 +31,9 @@
                     templateUrl: 'app/views/home.html',
                     controller: 'mainController as mc',
                     resolve: {
-                        // controller will not be loaded until $requireAuth resolves
+                        // controller will not be loaded until $requireAuth resolves (check auth.js)
                         // $requireAuth returns a promise so the resolve waits for it to complete
-                        // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.run
+                        // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.runs
                         'currentAuth': function (myAuthService) {
                             return myAuthService.requireAuthentication();
                         }
@@ -47,9 +47,9 @@
                         'customerKey': function ($stateParams) {
                             return $stateParams.uniqueId;
                         },
-                        // controller will not be loaded until $requireAuth resolves
+                        // controller will not be loaded until $requireAuth resolves (check auth.js)
                         // $requireAuth returns a promise so the resolve waits for it to complete
-                        // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.run
+                        // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.runs
                         'currentAuth': function (myAuthService) {
                             return myAuthService.requireAuthentication();
                         }
@@ -60,9 +60,9 @@
                     templateUrl: 'app/views/search.html',
                     controller: 'searchController as sc',
                     resolve: {
-                        // controller will not be loaded until $requireAuth resolves
+                        // controller will not be loaded until $requireAuth resolves (check auth.js)
                         // $requireAuth returns a promise so the resolve waits for it to complete
-                        // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.run
+                        // if the promise is rejected, it will throw a $stateChangeError which we are catching above in app.runs
                         'currentAuth': function (myAuthService) {
                             return myAuthService.requireAuthentication();
                         }

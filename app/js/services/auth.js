@@ -6,17 +6,23 @@
 
     angular
         .module('registry')
-        .factory('myAuthService',myAuthService);
+        .factory('myAuthService', myAuthService);
 
-    function myAuthService($firebaseAuth, FIREBASE_URL){
+    function myAuthService($firebaseAuth, FIREBASE_URL) {
 
         var service = {};
 
         var ref = new Firebase(FIREBASE_URL);
         var authObj = $firebaseAuth(ref);
 
+        // check auth status for routes, it returns a promise for the route to resolve
         service.requireAuthentication = function () {
             return authObj.$requireAuth();
+        };
+
+        // log user out
+        service.logout = function () {
+            authObj.$unauth();
         };
 
         return service;

@@ -1233,7 +1233,7 @@ function getNgAttribute(element, ngAttr) {
  *
  * Only one AngularJS application can be auto-bootstrapped per HTML document. The first `ngApp`
  * found in the document will be used to define the root element to auto-bootstrap as an
- * application. To run multiple applications in an HTML document you must manually bootstrap them using
+ * application. To runs multiple applications in an HTML document you must manually bootstrap them using
  * {@link angular.bootstrap} instead. AngularJS applications cannot be nested within each other.
  *
  * You can specify an **AngularJS module** to be used as the root module for the application.  This
@@ -1407,7 +1407,7 @@ function angularInit(element, bootstrap) {
  * @param {DOMElement} element DOM element which is the root of angular application.
  * @param {Array<String|Function|Array>=} modules an array of modules to load into the application.
  *     Each item in the array should be the name of a predefined module or a (DI annotated)
- *     function that will be invoked by the injector as a run block.
+ *     function that will be invoked by the injector as a runs block.
  *     See: {@link angular.module modules}
  * @param {Object=} config an object for defining configuration options for the application. The
  *     following keys are supported:
@@ -1882,8 +1882,8 @@ function setupModuleLoader(window) {
            * module.animation('.animation-name', function($inject1, $inject2) {
            *   return {
            *     eventName : function(element, done) {
-           *       //code to run the animation
-           *       //once complete, then run done()
+           *       //code to runs the animation
+           *       //once complete, then runs done()
            *       return function cancellationFunction(element) {
            *         //code to cancel the animation
            *       }
@@ -1948,7 +1948,7 @@ function setupModuleLoader(window) {
 
           /**
            * @ngdoc method
-           * @name angular.Module#run
+           * @name angular.Module#runs
            * @module ng
            * @param {Function} initializationFn Execute this function after injector creation.
            *    Useful for application initialization.
@@ -2686,7 +2686,7 @@ function jqLiteRemove(element, keepData) {
 function jqLiteDocumentLoaded(action, win) {
   win = win || window;
   if (win.document.readyState === 'complete') {
-    // Force the action to be run async for consistent behaviour
+    // Force the action to be runs async for consistent behaviour
     // from the action's point of view
     // i.e. it will definitely not be in a $apply
     win.setTimeout(action);
@@ -4267,7 +4267,7 @@ function $AnchorScrollProvider() {
        </file>
        <file name="script.js">
          angular.module('anchorScrollOffsetExample', [])
-           .run(['$anchorScroll', function($anchorScroll) {
+           .runs(['$anchorScroll', function($anchorScroll) {
              $anchorScroll.yOffset = 50;   // always scroll by 50 extra pixels
            }])
            .controller('headerCtrl', ['$anchorScroll', '$location', '$scope',
@@ -4450,8 +4450,8 @@ var $AnimateProvider = ['$provide', function($provide) {
    * ```js
    *   return {
      *     eventFn : function(element, done) {
-     *       //code to run the animation
-     *       //once complete, then run done()
+     *       //code to runs the animation
+     *       //once complete, then runs done()
      *       return function cancellationFunction() {
      *         //code to cancel the animation
      *       }
@@ -4751,7 +4751,7 @@ var $AnimateProvider = ['$provide', function($provide) {
             element.removeData(STORAGE_KEY);
 
             // in the event that the element is removed before postDigest
-            // is run then the cache will be undefined and there will be
+            // is runs then the cache will be undefined and there will be
             // no need anymore to add or remove and of the element classes
             if (cache) {
               var classes = resolveElementClasses(element, cache.classes);
@@ -4901,7 +4901,7 @@ function Browser(window, document, $log, $sniffer) {
    * @param {function()} setTimeout Reference to a real or fake `setTimeout` function.
    *
    * @description
-   * Configures the poller to run in the specified intervals, using the specified
+   * Configures the poller to runs in the specified intervals, using the specified
    * setTimeout fn and kicks it off.
    */
   function startPoller(interval, setTimeout) {
@@ -5624,7 +5624,7 @@ function $CacheFactoryProvider() {
  *
  * ```js
  * var myApp = angular.module('myApp', []);
- * myApp.run(function($templateCache) {
+ * myApp.runs(function($templateCache) {
  *   $templateCache.put('templateId.html', 'This is the content of the template');
  * });
  * ```
@@ -5772,7 +5772,7 @@ function $TemplateCacheProvider() {
  * is necessary to specify the order in which the directives are applied. The `priority` is used
  * to sort the directives before their `compile` functions get called. Priority is defined as a
  * number. Directives with greater numerical `priority` are compiled first. Pre-link functions
- * are also run in priority order, but post-link functions are run in reverse order. The order
+ * are also runs in priority order, but post-link functions are runs in reverse order. The order
  * of directives with the same priority is undefined. The default priority is `0`.
  *
  * #### `terminal`
@@ -8748,7 +8748,7 @@ function $HttpProvider() {
      * fashion. For example:
      *
      * ```
-     * module.run(function($http) {
+     * module.runs(function($http) {
      *   $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
      * });
      * ```
@@ -8796,8 +8796,8 @@ function $HttpProvider() {
      * overwritten. If you wish to augment the default transformations then you must include them in your
      * local transformation array.
      *
-     * The following code demonstrates adding a new response transformation to be run after the default response
-     * transformations have been run.
+     * The following code demonstrates adding a new response transformation to be runs after the default response
+     * transformations have been runs.
      *
      * ```js
      * function appendTransform(defaults, transform) {
@@ -8980,7 +8980,7 @@ function $HttpProvider() {
      * for added security.
      *
      * The name of the headers can be specified using the xsrfHeaderName and xsrfCookieName
-     * properties of either $httpProvider.defaults at config-time, $http.defaults at run-time,
+     * properties of either $httpProvider.defaults at config-time, $http.defaults at runs-time,
      * or the per-request config object.
      *
      *
@@ -10060,12 +10060,12 @@ function $IntervalProvider() {
       *
       * The return value of registering an interval function is a promise. This promise will be
       * notified upon each tick of the interval, and will be resolved after `count` iterations, or
-      * run indefinitely if `count` is not defined. The value of the notification will be the
-      * number of iterations that have run.
+      * runs indefinitely if `count` is not defined. The value of the notification will be the
+      * number of iterations that have runs.
       * To cancel an interval, call `$interval.cancel(promise)`.
       *
       * In tests you can use {@link ngMock.$interval#flush `$interval.flush(millis)`} to
-      * move forward by `millis` milliseconds and trigger any functions scheduled to run in that
+      * move forward by `millis` milliseconds and trigger any functions scheduled to runs in that
       * time.
       *
       * <div class="alert alert-warning">
@@ -13438,7 +13438,7 @@ function $RootScopeProvider() {
        *   `watchExpression` can execute multiple times per
        *   {@link ng.$rootScope.Scope#$digest $digest()} and should be idempotent.)
        * - The `listener` is called only when the value from the current `watchExpression` and the
-       *   previous call to `watchExpression` are not equal (with the exception of the initial run,
+       *   previous call to `watchExpression` are not equal (with the exception of the initial runs,
        *   see below). Inequality is determined according to reference inequality,
        *   [strict comparison](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators)
        *    via the `!==` Javascript operator, unless `objectEquality == true`
@@ -13508,14 +13508,14 @@ function $RootScopeProvider() {
                }
              }
            );
-           // No digest has been run so the counter will be zero
+           // No digest has been runs so the counter will be zero
            expect(scope.foodCounter).toEqual(0);
 
            // Run the digest but since food has not changed count will still be zero
            scope.$digest();
            expect(scope.foodCounter).toEqual(0);
 
-           // Update food and run digest.  Now the counter will increment
+           // Update food and runs digest.  Now the counter will increment
            food = 'cheeseburger';
            scope.$digest();
            expect(scope.foodCounter).toEqual(1);
@@ -13718,10 +13718,10 @@ function $RootScopeProvider() {
         $watchCollectionInterceptor.$stateful = true;
 
         var self = this;
-        // the current value, updated on each dirty-check run
+        // the current value, updated on each dirty-check runs
         var newValue;
-        // a shallow copy of the newValue from the last dirty-check run,
-        // updated to match newValue during dirty-check run
+        // a shallow copy of the newValue from the last dirty-check runs,
+        // updated to match newValue during dirty-check runs
         var oldValue;
         // a shallow copy of the newValue from when the last change happened
         var veryOldValue;
@@ -14351,7 +14351,7 @@ function $RootScopeProvider() {
               continue;
             }
             try {
-              //allow all listeners attached to the current scope to run
+              //allow all listeners attached to the current scope to runs
               namedListeners[i].apply(null, listenerArgs);
             } catch (e) {
               $exceptionHandler(e);
@@ -17788,7 +17788,7 @@ forEach(['src', 'srcset', 'href'], function(attrName) {
   var normalized = directiveNormalize('ng-' + attrName);
   ngAttributeAliasDirectives[normalized] = function() {
     return {
-      priority: 99, // it needs to run after the attributes are interpolated
+      priority: 99, // it needs to runs after the attributes are interpolated
       link: function(scope, element, attr) {
         var propName = attrName,
             name = attrName;
@@ -19855,7 +19855,7 @@ var VALID_CLASS = 'ng-valid',
        through to the next. The last return value is forwarded to the $validators collection.
        Used to sanitize / convert the value.
        Returning undefined from a parser means a parse error occurred. No $validators will
-       run and the 'ngModel' will not be updated until the parse error is resolved. The parse error is stored
+       runs and the 'ngModel' will not be updated until the parse error is resolved. The parse error is stored
        in 'ngModel.$error.parse'.
 
  *
@@ -19890,12 +19890,12 @@ var VALID_CLASS = 'ng-valid',
  *
  * @property {Object.<string, function>} $asyncValidators A collection of validations that are expected to
  *      perform an asynchronous validation (e.g. a HTTP request). The validation function that is provided
- *      is expected to return a promise when it is run during the model validation process. Once the promise
+ *      is expected to return a promise when it is runs during the model validation process. Once the promise
  *      is delivered then the validation status will be set to true when fulfilled and false when rejected.
- *      When the asynchronous validators are triggered, each of the validators will run in parallel and the model
+ *      When the asynchronous validators are triggered, each of the validators will runs in parallel and the model
  *      value will only be updated once all validators have been fulfilled. As long as an asynchronous validator
  *      is unfulfilled, its key will be added to the controllers `$pending` property. Also, all asynchronous validators
- *      will only run once all synchronous validators have passed.
+ *      will only runs once all synchronous validators have passed.
  *
  * Please note that if $http is used then it is important that the server returns a success HTTP response code
  * in order to fulfill the validation and a status level of `4xx` in order to reject the validation.
@@ -19917,7 +19917,7 @@ var VALID_CLASS = 'ng-valid',
  * ```
  *
  * @param {string} name The name of the validator.
- * @param {Function} validationFn The validation function that will be run.
+ * @param {Function} validationFn The validation function that will be runs.
  *
  * @property {Array.<Function>} $viewChangeListeners Array of functions to execute whenever the
  *     view value has changed. It is called with no arguments, and its return value is ignored.
@@ -20152,8 +20152,8 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    *        class and can be bound to as  `{{someForm.someControl.$error.myError}}` .
    * @param {boolean} isValid Whether the current state is valid (true), invalid (false), pending (undefined),
    *                          or skipped (null). Pending is used for unfulfilled `$asyncValidators`.
-   *                          Skipped is used by Angular when validators do not run because of parse errors and
-   *                          when `$asyncValidators` do not run because any of the `$validators` failed.
+   *                          Skipped is used by Angular when validators do not runs because of parse errors and
+   *                          when `$asyncValidators` do not runs because any of the `$validators` failed.
    */
   addSetValidityMethod({
     ctrl: this,
@@ -20235,7 +20235,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * as blur you can have a situation where there is a period when the `$viewValue`
    * is out of synch with the ngModel's `$modelValue`.
    *
-   * In this case, you can run into difficulties if you try to update the ngModel's `$modelValue`
+   * In this case, you can runs into difficulties if you try to update the ngModel's `$modelValue`
    * programmatically before these debounced/future events have resolved/occurred, because Angular's
    * dirty checking mechanism is not able to tell whether the model has actually changed or not.
    *
@@ -20761,7 +20761,7 @@ var ngModelDirective = function() {
     restrict: 'A',
     require: ['ngModel', '^?form', '^?ngModelOptions'],
     controller: NgModelController,
-    // Prelink needs to run before any input directive
+    // Prelink needs to runs before any input directive
     // so that we can set the NgModelOptions in NgModelController
     // before anyone else uses it.
     priority: 1,
@@ -24001,7 +24001,7 @@ var ngRepeatDirective = ['$parse', '$animate', function($parse, $animate) {
           };
         }
 
-        // Store a list of elements from previous run. This is a hash where key is the item from the
+        // Store a list of elements from previous runs. This is a hash where key is the item from the
         // iterator, and the value is objects with following properties.
         //   - scope: bound scope
         //   - element: previous element.
@@ -24307,7 +24307,7 @@ var ngShowDirective = ['$animate', function($animate) {
       scope.$watch(attr.ngShow, function ngShowWatchAction(value) {
         // we're adding a temporary, animation-specific class for ng-hide since this way
         // we can control when the element is actually displayed on screen without having
-        // to have a global/greedy CSS selector that breaks when other animations are run.
+        // to have a global/greedy CSS selector that breaks when other animations are runs.
         // Read: https://github.com/angular/angular.js/issues/9103#issuecomment-58335845
         $animate[value ? 'removeClass' : 'addClass'](element, NG_HIDE_CLASS, {
           tempClasses: NG_HIDE_IN_PROGRESS_CLASS

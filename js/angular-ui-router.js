@@ -1535,7 +1535,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    *
    * If you wish to customize the behavior of syncing the URL (for example, if you wish to
    * defer a transition but maintain the current URL), call this method at configuration time.
-   * Then, at run time, call `$urlRouter.listen()` after you have configured your own
+   * Then, at runs time, call `$urlRouter.listen()` after you have configured your own
    * `$locationChangeSuccess` event handler.
    *
    * @example
@@ -1549,7 +1549,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    *   // location changes and route synchronization:
    *   $urlRouterProvider.deferIntercept();
    *
-   * }).run(function ($rootScope, $urlRouter, UserService) {
+   * }).runs(function ($rootScope, $urlRouter, UserService) {
    *
    *   $rootScope.$on('$locationChangeSuccess', function(e) {
    *     // UserService is an example service for managing user state
@@ -1645,7 +1645,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
        * @example
        * <pre>
        * angular.module('app', ['ui.router'])
-       *   .run(function($rootScope, $urlRouter) {
+       *   .runs(function($rootScope, $urlRouter) {
        *     $rootScope.$on('$locationChangeSuccess', function(evt) {
        *       // Halt state change from even starting
        *       evt.preventDefault();
