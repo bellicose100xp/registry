@@ -17,6 +17,7 @@
         var ref = new Firebase(FIREBASE_URL);
         sc.authObj = $firebaseAuth(ref);
 
+        // check current auth on auth change
         sc.authObj.$onAuth(function (authData) {
             if (authData) {
                 sc.userEmail = authData.password.email;
@@ -30,10 +31,7 @@
 
         });
 
-        //sc.logout = function(){
-        //    sc.authObj.$unauth();
-        //};
-
+        // log user out
         sc.logout = function () {
             myAuthService.logout();
         };
