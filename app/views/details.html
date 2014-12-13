@@ -184,7 +184,7 @@
         <td>{{member.partyFirstName}} {{member.partyLastName}}</span></td>
         <td>{{member.partySuitStyle}}</td>
         <td>
-            <button class="btn btn-danger btn-xs no-print" ng-click="dc.customerParty.$remove(member)">Delete</button>
+            <button  ng-hide="member.isCompleted" class="btn btn-danger btn-xs no-print" ng-click="dc.customerParty.$remove(member)">Delete</button>
         </td>
     </tr>
     </tbody>
