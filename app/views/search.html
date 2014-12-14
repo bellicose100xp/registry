@@ -1,4 +1,3 @@
-
 <!-- filters -->
 <div>
     <div>
@@ -45,7 +44,7 @@
 
     <td>
         <a style="cursor: pointer" ng-click="sc.orderByField='dateAdded';sc.reverseSort = !sc.reverseSort">
-        Date Added
+            Date Added
             <span ng-show="sc.orderByField == 'dateAdded' ">
                 <span ng-hide="sc.reverseSort" class="glyphicon glyphicon-sort-by-attributes"></span>
                 <span ng-show="sc.reverseSort" class="glyphicon glyphicon-sort-by-attributes-alt"></span>
@@ -80,7 +79,12 @@
             </a>
         </td>
         <td>
-            <button ng-show="sc.systemUser()" class="btn btn-danger" ng-click="sc.data.$remove(customer)">Delete</button>
+            <span ng-show="sc.systemUser()">
+                <button class="btn btn-danger"
+                        ng-click="sc.data.$remove(customer)"
+                        require-confirmation>Delete
+                </button>
+            </span>
         </td>
     </tr>
 

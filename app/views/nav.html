@@ -5,20 +5,17 @@
     <span class="glyphicon glyphicon-user"></span> {{ sc.userEmail }}
 
         <span ng-hide="$state.is('home')">
-            |<a ui-sref="home">
-            <span class="glyphicon glyphicon-plus"></span> Add
+            | <a ui-sref="home"><span class="glyphicon glyphicon-plus"></span> Add
         </a>
         </span>
 
         <span ng-hide="$state.is('search')">
-            |<a ui-sref="search">
-            <span class="glyphicon glyphicon-search"></span> Search
+            | <a ui-sref="search"><span class="glyphicon glyphicon-search"></span> Search
         </a>
         </span>
 
         <span ng-show="$state.is('details')">
-                |<a href="javascript:window.print()">
-            <span class="glyphicon glyphicon-print"></span> Print
+                | <a href="javascript:window.print()"><span class="glyphicon glyphicon-print"></span> Print
         </a>
         </span>
 

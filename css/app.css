@@ -27,3 +27,7 @@ table thead tr td {
     text-decoration: line-through;
     font-style: italic;
 }
+
+.handPointer {
+    cursor: pointer;
+}
