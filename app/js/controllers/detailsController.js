@@ -8,7 +8,7 @@
         .module('registry')
         .controller('detailsController', detailsController);
 
-    function detailsController($scope, customerKey, $firebase, FIREBASE_URL) {
+    function detailsController($scope, customerKey, $firebase, FIREBASE_URL, $timeout) {
 
         var dc = this;
         dc.editing = false;
@@ -27,7 +27,7 @@
         dc.customer.tel = '';
 
         // this is so datepicker date can be saved in database
-        dc.dateStringConversion = function(){
+        dc.dateStringConversion = function () {
             dc.customer.eventDate = dc.customer.eventDate ? dc.customer.eventDate.toDateString() : '';
         };
 
@@ -51,9 +51,18 @@
         };
 
         // blur the suit style element for the party form so it doesn't give validation error
-        dc.blurOnEnter = function(e){
-            if (e.keyCode === 13){
-                return e.target.blur();
+        dc.blurOnEnter = function (e) {
+            if (e.keyCode === 13) {
+                // http://stackoverflow.com/questions/18389527/angularjs-submit-on-blur-and-blur-on-keypress
+                // need to do it like to prevent angular Error: [$rootScope:inprog] $apply already in progress
+                return $timeout(function () {
+                        e.target.blur()
+                    },
+                    0,
+                    false
+                );
+
+
             }
         };
 
@@ -73,7 +82,7 @@
 
         // recount members every time party list is changed.
         dc.customerParty.$watch(function () {
-           dc.memberCount = dc.customerParty.length;
+            dc.memberCount = dc.customerParty.length;
         });
 
         dc.customerParty.isCompleted = false;

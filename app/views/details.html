@@ -245,10 +245,12 @@
         </td>
 
         <td ng-hide="!dc.showDelete">
-            <button ng-hide="member.partyCompleted"
-                    class="btn btn-danger btn-xs no-print"
-                    ng-click="dc.customerParty.$remove(member)">Delete
-            </button>
+            <span ng-hide="member.partyCompleted">
+                <button class="btn btn-danger btn-xs no-print"
+                        require-confirmation="Are you sure you want to delete this Member?"
+                        ng-click="dc.customerParty.$remove(member)">Delete
+                </button>
+            </span>
         </td>
 
     </tr>
