@@ -98,7 +98,7 @@
                     //remote values after they have been added so they don't get added twice
                     dc.customerParty.firstName = dc.customerParty.lastName = dc.customerParty.suitStyle = null;
 
-                    //set the form to untouched to remove validation errors
+                    //set the form to untouched & pristine to remove validation errors
                     $scope.partyForm.$setUntouched();
                     $scope.partyForm.$setPristine();
 
