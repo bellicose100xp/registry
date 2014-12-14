@@ -8,7 +8,7 @@
         .module('registry')
         .controller('detailsController', detailsController);
 
-    function detailsController($scope, customerKey, $firebase, FIREBASE_URL, $timeout) {
+    function detailsController($scope, customerKey, $firebase, FIREBASE_URL, $timeout, $document) {
 
         var dc = this;
         dc.editing = false;
@@ -61,8 +61,6 @@
                     0,
                     false
                 );
-
-
             }
         };
 
@@ -98,10 +96,11 @@
                 }).then(function () {
 
                     //remote values after they have been added so they don't get added twice
-                    dc.customerParty.firstName = dc.customerParty.lastName = dc.customerParty.suitStyle = "";
+                    dc.customerParty.firstName = dc.customerParty.lastName = dc.customerParty.suitStyle = null;
 
                     //set the form to untouched to remove validation errors
                     $scope.partyForm.$setUntouched();
+                    $scope.partyForm.$setPristine();
 
                 });
             }

@@ -179,11 +179,11 @@
                type="text"
                ng-model="dc.customerParty.suitStyle"
                placeholder="Suit for Wedding"
-               ng-keyup="dc.blurOnEnter($event)"
+               ng-keydown="dc.blurOnEnter($event)"
                required>
-        <span ng-messages="partyForm.partySuitStyle.$error" ng-show="partyForm.partySuitStyle.$touched">
-            <span class="text-danger" ng-message="required">Suit information is required</span>
-        </span>
+    </span>
+    <span ng-messages="partyForm.partySuitStyle.$error" ng-show="partyForm.partySuitStyle.$touched">
+            <span class="text-danger" ng-message="required">Item to purchase is required </span>
     </span>
 
     <button type="submit">Add Party Member</button>
