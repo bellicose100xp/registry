@@ -5,7 +5,7 @@
 
     angular
         .module('registry')
-        .directive('requireConfirmation', function () {
+        .directive('requireConfirmation', function ($window) {
             return {
                 // angular runs attributes by priority,
                 // default priority is 0, higher priority runs first
@@ -21,7 +21,7 @@
                     var clickAction = attr.ngClick;
 
                     elem.bind('click', function () {
-                        if(window.confirm(msg)){
+                        if($window.confirm(msg)){
                             scope.$eval(clickAction);
                         }
                     });
