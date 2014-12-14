@@ -28,7 +28,7 @@
 
         // this is so datepicker date can be saved in database
         dc.dateStringConversion = function(){
-            dc.customer.eventDate = dc.eventDate ? dc.eventDate.toDateString() : '';
+            dc.customer.eventDate = dc.customer.eventDate ? dc.customer.eventDate.toDateString() : '';
         };
 
         dc.saveCustomer = function (isValid) {
@@ -98,6 +98,28 @@
             }
 
         };
+
+        //InLine Edit Customer Party members
+        dc.isMemberEdited = false;
+
+        //toggle current edit status
+        dc.toggleMemberEdit = function () {
+            dc.isMemberEdited = !dc.isMemberEdited;
+        };
+
+        dc.saveMember = function (member) {
+
+            // save customer party member
+            dc.customerParty.$save(member);
+
+            // toggle current edit status
+            dc.toggleMemberEdit();
+
+        };
+
+        // delete button
+
+        dc.showDelete = false;
 
 
     }

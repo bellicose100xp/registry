@@ -5,6 +5,7 @@
     <fieldset>
         <legend> Add Wedding Registry Info</legend>
 
+
         <div class="form-group"
              ng-class="{'has-error': registryForm.firstName.$invalid && registryForm.firstName.$touched}">
             <label for="firstName" class="control-label">First Name:</label>
@@ -62,6 +63,26 @@
             <div ng-messages="registryForm.tel.$error" ng-show="registryForm.tel.$touched">
                 <div class="text-danger" ng-message="required">Phone number is required & must be valid number</div>
 
+            </div>
+
+        </div>
+
+        <div class="form-group"
+             ng-class="{'has-error': registryForm.salesperson.$invalid && registryForm.salesperson.$touched}">
+            <label for="salesperson" class="control-label">Salesperson:</label>
+
+            <div>
+                <input id="salesperson"
+                       name="salesperson"
+                       class="form-control"
+                       type="text"
+                       ng-model="mc.salesperson"
+                       placeholder="if no one helped then type HOUSE"
+                       required>
+            </div>
+
+            <div ng-messages="registryForm.salesperson.$error" ng-show="registryForm.salesperson.$touched">
+                <div class="text-danger" ng-message="required">Salesperson name is required, if no one helped, type HOUSE</div>
             </div>
 
         </div>

@@ -68,8 +68,8 @@
                    type="text"
                    datepicker-popup="MM/dd/yyyy"
                    date-type="string"
-                   is-open = "dc.opened"
-                   ng-model="dc.eventDate"
+                   is-open="dc.opened"
+                   ng-model="dc.customer.eventDate"
                    ng-change="dc.dateStringConversion()"
                    placeholder="Event Date">
                 <span class="input-group-btn">
@@ -78,6 +78,26 @@
                     </button>
                 </span>
         </span>
+    </div>
+    <div>
+        <span>
+
+        <span ng-hide="dc.editing"><b> Salesperson:</b> {{dc.customer.salesperson}}</span>
+
+        <input ng-show="dc.editing"
+               name="salesperson"
+               id="salesperson"
+               ng-model="dc.customer.salesperson"
+               placeholder="Salesperson or House"
+               required/>
+
+        <span ng-messages="detailsForm.salesperson.$error" ng-show="detailsForm.salesperson.$touched">
+            <span class="text-danger"
+                  ng-message="required">salesperson name is required, if no one helped type House</span>
+        </span>
+
+    </span>
+
     </div>
 
     <span class="h4">
@@ -97,17 +117,18 @@
 
     </span>
 
+
     <div>
 
         <span ng-hide="dc.editing"><b>Notes:</b> {{dc.customer.notes}}</span>
 
         <textarea ng-show="dc.editing"
-               name="notes"
-               id="notes"
-               rows="4"
-               cols="50"
-               ng-model="dc.customer.notes"
-               placeholder="Notes">
+                  name="notes"
+                  id="notes"
+                  rows="4"
+                  cols="50"
+                  ng-model="dc.customer.notes"
+                  placeholder="Notes">
         </textarea>
 
     </div>
@@ -176,16 +197,60 @@
         <td>Completed</td>
         <td>Guest Name</td>
         <td>Suit for Wedding</td>
+        <td>
+            <input type="checkbox" ng-model="dc.showDelete"> {{dc.showDelete ? 'Hide' : 'Show'}}
+            <span class="glyphicon glyphicon-remove-circle text-danger"></span>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="member in dc.customerParty" ng-class="{completed: member.isCompleted}">
-        <td><input type="checkbox" ng-model="member.isCompleted" ng-change="dc.customerParty.$save(member)"></td>
-        <td>{{member.partyFirstName}} {{member.partyLastName}}</span></td>
-        <td>{{member.partySuitStyle}}</td>
+    <tr ng-repeat="member in dc.customerParty" ng-class="{completed: member.partyCompleted}">
+
+        <td><input type="checkbox" ng-model="member.partyCompleted" ng-change="dc.customerParty.$save(member)"></td>
+
         <td>
-            <button  ng-hide="member.isCompleted" class="btn btn-danger btn-xs no-print" ng-click="dc.customerParty.$remove(member)">Delete</button>
+            <span ng-hide="dc.isMemberEdited && !member.isCompleted">
+            {{member.partyFirstName}} {{member.partyLastName}}
+            </span>
+
+            <span ng-show="dc.isMemberEdited && !member.isCompleted">
+            <input type="text" ng-model="member.partyFirstName" placeholder="First Name">
+            <input type="text" ng-model="member.partyLastName" placeholder="Last Name">
+            </span>
         </td>
+
+        <td>
+            <span ng-hide="dc.isMemberEdited && !member.isCompleted">
+            {{member.partySuitStyle}}
+            </span>
+
+            <span ng-show="dc.isMemberEdited && !member.isCompleted">
+            <input type="text" ng-model="member.partySuitStyle" placeholder="Suit Style">
+            </span>
+        </td>
+
+        <td>
+            <span ng-hide="member.partyCompleted">
+
+            <button ng-hide="dc.isMemberEdited"
+                    class="btn btn-primary btn-xs no-print"
+                    ng-click="dc.toggleMemberEdit()">Edit
+            </button>
+
+            <button ng-show="dc.isMemberEdited"
+                    class="btn btn-success btn-xs no-print"
+                    ng-click="dc.saveMember(member)">Save
+            </button>
+
+            </span>
+        </td>
+
+        <td ng-hide="!dc.showDelete">
+            <button ng-hide="member.partyCompleted"
+                    class="btn btn-danger btn-xs no-print"
+                    ng-click="dc.customerParty.$remove(member)">Delete
+            </button>
+        </td>
+
     </tr>
     </tbody>
 </table>

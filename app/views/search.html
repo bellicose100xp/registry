@@ -53,6 +53,8 @@
         </a>
     </td>
 
+    <td>Salesperson</td>
+
     <td>Added By</td>
 
     </thead>
@@ -70,6 +72,7 @@
         <td>{{customer.firstName}} {{customer.lastName}}</td>
         <td>{{customer.tel | tel}}</td>
         <td>{{customer.dateAdded | date:'yyyy-MM-dd hh-mm-ss a'}}</td>
+        <td>{{customer.salesperson}}</td>
         <td>{{customer.createdBy}}</td>
         <td>
             <a ui-sref="details({uniqueId: customer.$id})">

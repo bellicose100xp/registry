@@ -11,7 +11,7 @@
     function mainController($scope, $firebase, $timeout, FIREBASE_URL, $state, currentAuth) {
 
         var mc = this;
-        mc.firstName = mc.lastName = mc.tel = mc.suitStyle = mc.date = mc.notes = null;
+        mc.firstName = mc.lastName = mc.tel = mc.suitStyle = mc.date = mc.notes = mc.salesperson = null;
         mc.isCompleted = false;
         mc.saveButtonClicked = true;
         mc.needsValidation = true;
@@ -45,12 +45,13 @@
                         isCompleted: mc.isCompleted,
                         notes: mc.notes,
                         createdBy: currentAuth.password.email,
-                        eventDate: mc.eventDate.toDateString()
+                        eventDate: mc.eventDate.toDateString(),
+                        salesperson: mc.salesperson
                     })
                     .then(function (ref) {
 
                         // reset all ng-model bindings to empty string so it doesn't get submitted twice
-                        mc.firstName = mc.lastName = mc.tel = mc.suitStyle = mc.date = mc.notes = "";
+                        mc.firstName = mc.lastName = mc.tel = mc.suitStyle = mc.date = mc.notes = mc.salesperson = "";
 
                         // set the form status back to untouched status so it doesn't show any error after pressing submit button
                         $scope.registryForm.$setUntouched();
