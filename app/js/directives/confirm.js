@@ -10,7 +10,7 @@
                 // angular runs attributes by priority,
                 // default priority is 0, higher priority runs first
                 priority: 1,
-                // setting terminal to true stops angular from processing other attributes
+                // setting terminal to true stops angular from processing other attribute directives
                 terminal: true,
                 link: function(scope, elem, attr){
                     // if attribute doesn't have any value then display default message.

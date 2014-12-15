@@ -208,22 +208,22 @@
         <td><input type="checkbox" ng-model="member.partyCompleted" ng-change="dc.customerParty.$save(member)"></td>
 
         <td>
-            <span ng-hide="dc.isMemberEdited && !member.isCompleted">
+            <span ng-hide="dc.isMemberEdited && !member.partyCompleted">
             {{member.partyFirstName}} {{member.partyLastName}}
             </span>
 
-            <span ng-show="dc.isMemberEdited && !member.isCompleted">
+            <span ng-show="dc.isMemberEdited && !member.partyCompleted">
             <input type="text" ng-model="member.partyFirstName" placeholder="First Name">
             <input type="text" ng-model="member.partyLastName" placeholder="Last Name">
             </span>
         </td>
 
         <td>
-            <span ng-hide="dc.isMemberEdited && !member.isCompleted">
+            <span ng-hide="dc.isMemberEdited && !member.partyCompleted">
             {{member.partySuitStyle}}
             </span>
 
-            <span ng-show="dc.isMemberEdited && !member.isCompleted">
+            <span ng-show="dc.isMemberEdited && !member.partyCompleted">
             <input type="text" ng-model="member.partySuitStyle" placeholder="Suit Style">
             </span>
         </td>
