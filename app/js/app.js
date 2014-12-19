@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('registry', ['firebase', 'ui.utils', 'ui.router', 'ngMessages','ui.bootstrap','ngAnimate'])
+        .module('registry', ['firebase', 'ui.utils', 'ui.router', 'ngMessages','ui.bootstrap'])
         .constant('FIREBASE_URL', 'https://buggy.firebaseio.com/')
         .run(function ($rootScope, $state) {
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
