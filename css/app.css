@@ -32,6 +32,9 @@ table thead tr td {
     cursor: pointer;
 }
 
+table tbody tr:hover {
+    background-color: lightyellow;
+}
 /*.ng-enter {*/
     /*transition: 0.05s;*/
     /*opacity: 0;*/
