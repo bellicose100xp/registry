@@ -197,7 +197,7 @@
         <td>Completed</td>
         <td>Guest Name</td>
         <td>Suit for Wedding</td>
-        <td>
+        <td class="no-print">
             <input type="checkbox" ng-model="dc.showDelete"> {{dc.showDelete ? 'Hide' : 'Show'}}
             <span class="glyphicon glyphicon-remove-circle text-danger"></span>
     </tr>
@@ -208,22 +208,22 @@
         <td><input type="checkbox" ng-model="member.partyCompleted" ng-change="dc.customerParty.$save(member)"></td>
 
         <td>
-            <span ng-hide="dc.isMemberEdited && !member.partyCompleted">
+            <span ng-hide="dc.isMemberEdited && $index === dc.index && !member.partyCompleted">
             {{member.partyFirstName}} {{member.partyLastName}}
             </span>
 
-            <span ng-show="dc.isMemberEdited && !member.partyCompleted">
+            <span ng-show="dc.isMemberEdited && $index === dc.index && !member.partyCompleted">
             <input type="text" ng-model="member.partyFirstName" placeholder="First Name">
             <input type="text" ng-model="member.partyLastName" placeholder="Last Name">
             </span>
         </td>
 
         <td>
-            <span ng-hide="dc.isMemberEdited && !member.partyCompleted">
+            <span ng-hide="dc.isMemberEdited && $index === dc.index && !member.partyCompleted">
             {{member.partySuitStyle}}
             </span>
 
-            <span ng-show="dc.isMemberEdited && !member.partyCompleted">
+            <span ng-show="dc.isMemberEdited && $index === dc.index && !member.partyCompleted">
             <input type="text" ng-model="member.partySuitStyle" placeholder="Suit Style">
             </span>
         </td>
@@ -231,12 +231,12 @@
         <td>
             <span ng-hide="member.partyCompleted">
 
-            <button ng-hide="dc.isMemberEdited"
+            <button ng-hide="dc.isMemberEdited && $index === dc.index"
                     class="btn btn-primary btn-xs no-print"
-                    ng-click="dc.toggleMemberEdit()">Edit
+                    ng-click="dc.toggleMemberEdit($index)">Edit
             </button>
 
-            <button ng-show="dc.isMemberEdited"
+            <button ng-show="dc.isMemberEdited && $index === dc.index"
                     class="btn btn-success btn-xs no-print"
                     ng-click="dc.saveMember(member)">Save
             </button>

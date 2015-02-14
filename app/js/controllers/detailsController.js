@@ -109,10 +109,12 @@
 
         //InLine Edit Customer Party members
         dc.isMemberEdited = false;
+        dc.index = null;
 
         //toggle current edit status
-        dc.toggleMemberEdit = function () {
+        dc.toggleMemberEdit = function (index) {
             dc.isMemberEdited = !dc.isMemberEdited;
+            dc.index = index;
         };
 
         dc.saveMember = function (member) {
@@ -121,7 +123,7 @@
             dc.customerParty.$save(member);
 
             // toggle current edit status
-            dc.toggleMemberEdit();
+            dc.toggleMemberEdit(null);
 
         };
 
