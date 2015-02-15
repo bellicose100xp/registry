@@ -77,7 +77,7 @@
         <td>{{customer.tel | tel}}</td>
         <td>{{customer.dateAdded | date:'M/d/yy h:m a'}}</td>
         <td>{{customer.salesperson}}</td>
-        <td>{{customer.createdBy}}</td>
+        <td>{{customer.createdBy | emailToName}}</td>
         <td>
             <a ui-sref="details({uniqueId: customer.$id})">
                 <button class="btn btn-info">Edit</button>
