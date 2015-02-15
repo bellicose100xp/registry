@@ -75,7 +75,7 @@
         <td><input type="checkbox" ng-model="customer.isCompleted" ng-change="sc.data.$save(customer)"></td>
         <td>{{customer.firstName}} {{customer.lastName}}</td>
         <td>{{customer.tel | tel}}</td>
-        <td>{{customer.dateAdded | date:'yyyy-MM-dd hh-mm-ss a'}}</td>
+        <td>{{customer.dateAdded | date:'M/d/yy h:m a'}}</td>
         <td>{{customer.salesperson}}</td>
         <td>{{customer.createdBy}}</td>
         <td>
