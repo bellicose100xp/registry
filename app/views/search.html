@@ -12,11 +12,16 @@
     <span>
         <input type="text" ng-model="search.lastName" placeholder="Last Name Only">
     </span>
+    <!--<span>-->
+        <!--<input type="checkbox"-->
+               <!--data-ng-model="search.isCompleted"-->
+               <!--data-ng-true-value="'false'"-->
+               <!--data-ng-false-value="''"> Hide Completed-->
+    <!--</span>-->
     <span>
-        <input type="checkbox"
-               data-ng-model="search.isCompleted"
-               data-ng-true-value="'false'"
-               data-ng-false-value="''"> Hide Completed
+        <input type="radio" ng-model="search.isCompleted" value="false"> Active
+        <input type="radio" ng-model="search.isCompleted" value="true"> Completed
+        <input type="radio" ng-model="search.isCompleted" value=""> All
     </span>
 </div>
 
@@ -24,7 +29,7 @@
 <hr>
 
 <!-- Data Display -->
-<table class="table col-md-9">
+<table class="table table-striped table-condensed">
 
     <thead>
 

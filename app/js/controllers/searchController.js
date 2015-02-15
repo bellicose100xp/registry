@@ -8,9 +8,13 @@
         .module('registry')
         .controller('searchController',searchController);
 
-    function searchController($firebase, FIREBASE_URL, currentAuth){
+    function searchController($firebase, FIREBASE_URL, currentAuth, $scope){
 
         var sc = this;
+
+        // set default value for search filter to show active items only
+        $scope.search = {};
+        $scope.search.isCompleted = 'false';
 
         //for header sorting
         sc.orderByField = 'dateAdded';
@@ -24,7 +28,6 @@
         sc.systemUser = function(){
             return currentAuth.password.email === 'admin@4hso.com';
         };
-
     }
 
 }());

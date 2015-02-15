@@ -32,7 +32,11 @@ table thead tr td {
     cursor: pointer;
 }
 
-table tbody tr:hover {
+/*table tbody tr:hover {*/
+    /*background-color: lightyellow;*/
+/*}*/
+
+.table-striped tbody tr:hover {
     background-color: lightyellow;
 }
 /*.ng-enter {*/
