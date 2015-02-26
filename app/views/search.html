@@ -12,11 +12,14 @@
     <span>
         <input type="text" ng-model="search.lastName" placeholder="Last Name Only">
     </span>
+    <span>
+        <input type="text" ng-model="search.salesperson" placeholder="Salesperson">
+    </span>
     <!--<span>-->
-        <!--<input type="checkbox"-->
-               <!--data-ng-model="search.isCompleted"-->
-               <!--data-ng-true-value="'false'"-->
-               <!--data-ng-false-value="''"> Hide Completed-->
+    <!--<input type="checkbox"-->
+    <!--data-ng-model="search.isCompleted"-->
+    <!--data-ng-true-value="'false'"-->
+    <!--data-ng-false-value="''"> Hide Completed-->
     <!--</span>-->
     <span>
         <input type="radio" ng-model="search.isCompleted" value="false"> Active
@@ -69,10 +72,12 @@
                     | filter:{  isCompleted: search.isCompleted,
                                 firstName: search.firstName,
                                 lastName: search.lastName,
-                                tel: search.tel}
+                                tel: search.tel,
+                                salesperson: search.salesperson}
                     | orderBy:sc.orderByField:sc.reverseSort"
         ng-class="{completed: customer.isCompleted}">
-        <td><input type="checkbox" ng-model="customer.isCompleted" checkbox-confirmation ng-change="sc.data.$save(customer)"></td>
+        <td><input type="checkbox" ng-model="customer.isCompleted" checkbox-confirmation
+                   ng-change="sc.data.$save(customer)"></td>
         <td>{{customer.firstName}} {{customer.lastName}}</td>
         <td>{{customer.tel | tel}}</td>
         <td>{{customer.dateAdded | date:'M/d/yy h:m a'}}</td>
