@@ -1,7 +1,7 @@
 <!-- filters -->
 <div>
     <div>
-        <h3> Enter Search Criteria</h3>
+        <h4> Enter Search Criteria</h4>
     </div>
     <span>
         <input type="text" ng-model="search.tel" placeholder="Telephone Only">
@@ -78,10 +78,10 @@
         ng-class="{completed: customer.isCompleted}">
         <td><input type="checkbox" ng-model="customer.isCompleted" checkbox-confirmation
                    ng-change="sc.data.$save(customer)"></td>
-        <td>{{customer.firstName}} {{customer.lastName}}</td>
+        <td>{{customer.firstName | titleCase}} {{customer.lastName | titleCase}}</td>
         <td>{{customer.tel | tel}}</td>
         <td>{{customer.dateAdded | date:'M/d/yy h:m a'}}</td>
-        <td>{{customer.salesperson}}</td>
+        <td>{{customer.salesperson | titleCase}}</td>
         <td>{{customer.createdBy | emailToName}}</td>
         <td>
             <a ui-sref="details({uniqueId: customer.$id})">

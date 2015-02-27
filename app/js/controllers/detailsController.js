@@ -2,7 +2,7 @@
  * Created by buggy on 11/28/14.
  */
 (function () {
-    'use strict'
+    'use strict';
 
     angular
         .module('registry')
@@ -29,6 +29,28 @@
         // this is so datepicker date can be saved in database
         dc.dateStringConversion = function () {
             dc.customer.eventDate = dc.customer.eventDate ? dc.customer.eventDate.toDateString() : '';
+        };
+
+        dc.completeCustomer = function () {
+            if(confirm('Are you sure you want to mark this as complete?')) {
+                dc.customer.isCompleted = true;
+
+                dc.customer.$save().then(function () {
+                }, function (error) {
+                    console.log('Error:', error);
+                });
+            }
+        };
+
+        dc.markAsIncomplete = function () {
+            if(confirm('Are you sure you want to mark this as active')) {
+                dc.customer.isCompleted = false;
+
+                dc.customer.$save().then(function () {
+                }, function (error) {
+                    console.log('Error:', error);
+                });
+            }
         };
 
         dc.saveCustomer = function (isValid) {

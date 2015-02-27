@@ -1,7 +1,18 @@
 <!-- Edit button at the top -->
 <button class="btn btn-primary btn-xs no-print"
-        ng-hide="dc.editing"
+        ng-show="!dc.editing && !dc.customer.isCompleted"
         ng-click="dc.editItem()">Edit
+</button>
+
+<!-- Edit button at the top -->
+<button class="btn btn-success btn-xs no-print"
+        ng-show="!dc.editing && !dc.customer.isCompleted"
+        ng-click="dc.completeCustomer()">Mark as Complete
+</button>
+
+<button class="btn btn-danger btn-xs no-print"
+        ng-show="!dc.editing && dc.customer.isCompleted"
+        ng-click="dc.markAsIncomplete()"> Mark as Active
 </button>
 
 <!-- Customer Edit Form -->
