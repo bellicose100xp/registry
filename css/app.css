@@ -28,6 +28,10 @@ table thead tr td {
     font-style: italic;
 }
 
+.event {
+    color: red;
+}
+
 .handPointer {
     cursor: pointer;
 }

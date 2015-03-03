@@ -12,6 +12,7 @@
 
         var dc = this;
         dc.editing = false;
+        dc.today = new Date();
 
         dc.open = function ($event) {
             $event.preventDefault();
@@ -23,12 +24,23 @@
         var ref = new Firebase(FIREBASE_URL + '/' + customerKey);
         dc.customer = $firebase(ref).$asObject();
 
+        // assign date to a local variable for display purposes
+        //dc.customer.$loaded()
+        //    .then(function (object) {
+        //        dc.eventDateForDisplay = new Date(object.eventDate);
+        //    })
+        //    .catch(function (error) {
+        //        console.log("Error while loading customer object: ", error);
+        //    });
+
         // this is declared here because otherwise the tel filter tries to parse a null string and throws error
         dc.customer.tel = '';
 
         // this is so datepicker date can be saved in database
         dc.dateStringConversion = function () {
             dc.customer.eventDate = dc.customer.eventDate ? dc.customer.eventDate.toDateString() : '';
+            //dc.eventDateForDisplay = new Date(dc.customer.eventDate);
+            //console.log(dc.today >= dc.eventDateForDisplay);
         };
 
         dc.completeCustomer = function () {
@@ -97,7 +109,7 @@
                 dc.memberCount = list.length;
             })
             .catch(function (error) {
-                console.log("Error: ", error);
+                console.log("Error while loading party object: ", error);
             });
 
         // recount members every time party list is changed.

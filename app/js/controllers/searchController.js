@@ -11,6 +11,7 @@
     function searchController($firebase, FIREBASE_URL, currentAuth, $scope){
 
         var sc = this;
+        sc.today = new Date();
 
         // set default value for search filter to show active items only
         $scope.search = {};
@@ -27,6 +28,12 @@
 
         sc.systemUser = function(){
             return currentAuth.password.email === 'admin@4hso.com';
+        };
+
+        sc.checkOldEvents = function (customer) {
+            var dateToCheck = new Date(customer.eventDate);
+            var checkResult = sc.today >= dateToCheck;
+            return !customer.isCompleted && checkResult;
         };
     }
 

@@ -75,7 +75,7 @@
                                 tel: search.tel,
                                 salesperson: search.salesperson}
                     | orderBy:sc.orderByField:sc.reverseSort"
-        ng-class="{completed: customer.isCompleted}">
+        ng-class="{completed: customer.isCompleted, event: sc.checkOldEvents(customer)}">
         <td><input type="checkbox" ng-model="customer.isCompleted" checkbox-confirmation
                    ng-change="sc.data.$save(customer)"></td>
         <td>{{customer.firstName | titleCase}} {{customer.lastName | titleCase}}</td>
@@ -85,7 +85,7 @@
         <td>{{customer.createdBy | emailToName}}</td>
         <td>
             <a ui-sref="details({uniqueId: customer.$id})">
-                <button class="btn btn-info">Edit</button>
+                <button class="btn btn-info">Details</button>
             </a>
         </td>
         <td>

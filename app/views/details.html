@@ -77,12 +77,11 @@
                    name="eventDate"
                    class="form-control"
                    type="text"
-                   datepicker-popup="MM/dd/yyyy"
-                   date-type="string"
+                   datepicker-popup="shortDate"
                    is-open="dc.opened"
                    ng-model="dc.customer.eventDate"
                    ng-change="dc.dateStringConversion()"
-                   placeholder="Event Date">
+                   >
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="dc.open($event)">
                         <span class="glyphicon glyphicon-calendar"></span>
