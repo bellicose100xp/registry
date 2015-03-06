@@ -8,7 +8,7 @@
         .module('registry')
         .controller('detailsController', detailsController);
 
-    function detailsController($scope, customerKey, $firebase, FIREBASE_URL, $timeout, $document) {
+    function detailsController($scope, customerKey, $firebase, FIREBASE_URL, $timeout, $document, $filter) {
 
         var dc = this;
         dc.editing = false;
@@ -22,13 +22,18 @@
 
         var ref = new Firebase(FIREBASE_URL + '/' + customerKey);
         dc.customer = $firebase(ref).$asObject();
-
+        console.log(dc.customer.eventDate);
         // this is declared here because otherwise the tel filter tries to parse a null string and throws error
         dc.customer.tel = '';
 
+
+        dc.dateAsString = $filter('date')(dc.customer.eventDate, "yyyy-MM-dd");
+
         // this is so datepicker date can be saved in database
         dc.dateStringConversion = function () {
-            dc.customer.eventDate = dc.customer.eventDate ? dc.customer.eventDate.toDateString() : '';
+            console.log('before: ' + dc.customer.eventDate);
+            dc.customer.eventDate = dc.customer.eventDate ? dc.customer.eventDate = $filter('date')(dc.customer.eventDate, "dd/MM/yyyy"), "yyyy-MM-dd") : '';
+            console.log('after: ' + dc.customer.eventDate);
         };
 
         dc.completeCustomer = function () {

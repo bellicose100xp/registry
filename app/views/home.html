@@ -4,7 +4,7 @@
 
     <fieldset>
         <legend> Add Wedding Registry Info</legend>
-
+{{mc.eventDate}}
 
         <div class="form-group"
              ng-class="{'has-error': registryForm.firstName.$invalid && registryForm.firstName.$touched}">
@@ -111,22 +111,40 @@
              ng-class="{'has-error': registryForm.eventDate.$invalid && registryForm.eventDate.$touched}">
             <label for="eventDate" class="control-label">Event Date:</label>
 
-            <div class="input-group col-md-4 col-sm-4 col-xs-6">
+            <div>
                 <input id="eventDate"
                        name="eventDate"
                        class="form-control"
-                       type="text"
-                       datepicker-popup="shortDate"
-                       is-open = "mc.opened"
-                       ng-model="mc.eventDate">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="mc.open($event)">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </button>
-                </span>
+                       type="datetime"
+                       ng-model="mc.eventDate"
+                       required>
+            </div>
+
+            <div ng-messages="registryForm.eventDate.$error" ng-show="registryForm.eventDate.$touched">
+                <div class="text-danger" ng-message="required">Event date is required</div>
             </div>
 
         </div>
+
+        <!--<div class="form-group"-->
+             <!--ng-class="{'has-error': registryForm.eventDate.$invalid && registryForm.eventDate.$touched}">-->
+            <!--<label for="eventDate" class="control-label">Event Date:</label>-->
+
+            <!--<div class="input-group col-md-4 col-sm-4 col-xs-6">-->
+                <!--<input id="eventDate"-->
+                       <!--name="eventDate"-->
+                       <!--class="form-control"-->
+                       <!--type="text"-->
+                       <!--datepicker-popup="shortDate"-->
+                       <!--is-open = "mc.opened"-->
+                       <!--ng-model="mc.eventDate">-->
+                <!--<span class="input-group-btn">-->
+                    <!--<button type="button" class="btn btn-default" ng-click="mc.open($event)">-->
+                        <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                    <!--</button>-->
+                <!--</span>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div class="form-group"
              ng-class="{'has-error': registryForm.notes.$invalid && registryForm.notes.$touched}">

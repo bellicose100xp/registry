@@ -45,7 +45,7 @@
                         isCompleted: mc.isCompleted,
                         notes: mc.notes,
                         createdBy: currentAuth.password.email,
-                        eventDate: mc.eventDate.toDateString(),
+                        eventDate: mc.eventDate.getTime(),
                         salesperson: mc.salesperson
                     })
                     .then(function (ref) {

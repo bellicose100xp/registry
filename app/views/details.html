@@ -14,7 +14,7 @@
         ng-show="!dc.editing && dc.customer.isCompleted"
         ng-click="dc.markAsIncomplete()"> Mark as Active
 </button>
-
+{{dc.customer | json}}
 <!-- Customer Edit Form -->
 <form name="detailsForm" ng-submit="dc.saveCustomer(detailsForm.$valid)" novalidate>
     <legend> Customer Information</legend>
@@ -68,28 +68,40 @@
     </span>
 
     </div>
+
     <div>
-        <span ng-hide="dc.editing"><b>Event Date: </b>{{dc.customer.eventDate}}</span>
+        <span ng-hide="dc.editing"><b>Event Date: </b>{{dc.customer.eventDate | date}}</span>
 
         <span ng-show="dc.editing"
               class="input-group col-md-4 col-sm-4 col-xs-6">
+
             <input id="eventDate"
-                   name="eventDate"
-                   class="form-control"
-                   type="text"
-                   datepicker-popup="MM/dd/yyyy"
-                   date-type="string"
-                   is-open="dc.opened"
-                   ng-model="dc.customer.eventDate"
-                   ng-change="dc.dateStringConversion()"
-                   placeholder="Event Date">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="dc.open($event)">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </button>
-                </span>
+                    name="eventDate"
+                    type="date"
+                    ng-model="dc.dateAsString"
+                    value="{{dc.dateAsString}}"
+                    pattern="dd/MM/yyyy"
+                    >
+
+            <!--<input id="eventDate"-->
+                   <!--name="eventDate"-->
+                   <!--class="form-control"-->
+                   <!--type="text"-->
+                   <!--datepicker-popup="MM/dd/yyyy"-->
+                   <!--date-type="string"-->
+                   <!--is-open="dc.opened"-->
+                   <!--ng-model="dc.customer.eventDate"-->
+                   <!--ng-change="dc.dateStringConversion()"-->
+                   <!--placeholder="Event Date">-->
+                <!--<span class="input-group-btn">-->
+                    <!--<button type="button" class="btn btn-default" ng-click="dc.open($event)">-->
+                        <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                    <!--</button>-->
+                <!--</span>-->
+
         </span>
     </div>
+
     <div>
         <span>
 
