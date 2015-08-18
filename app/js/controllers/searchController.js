@@ -26,6 +26,14 @@
 
         this.data = sync.$asArray();
 
+        sc.archiveCustomer = function (customer) {
+            // this is so the $save doesn't run while the checkbox confirmation is not valid
+            if(customer.isCompleted) {
+                this.data.$save(customer);
+            }
+
+        }.bind(this);
+
         sc.systemUser = function(){
             return currentAuth.password.email === 'admin@4hso.com';
         };
