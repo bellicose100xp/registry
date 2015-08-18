@@ -28,7 +28,7 @@
 
         sc.archiveCustomer = function (customer) {
             // this is so the $save doesn't run while the checkbox confirmation is not valid
-            if(customer.isCompleted) {
+            if(customer.isCompleted !== undefined) {
                 this.data.$save(customer);
             }
 
